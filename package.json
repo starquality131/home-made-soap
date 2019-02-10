@@ -32,5 +32,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
     "jshint": "^2.9.7"
-  }
+  },
+  "homepage": "https://starquality131.github.io/homeMadeSoap/build/"
 }
