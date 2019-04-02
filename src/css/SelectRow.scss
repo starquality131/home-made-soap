@@ -45,11 +45,20 @@ input{
     text-align: center;
 }
 
+.App{
+    min-width: 700px;
+}
+
 .soapName{
     width: 200px;
     margin-top: 20px;
     margin-left: 20px;
-    margin-right: 20px;
+}
+
+.date {
+    width: 200px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .topInfo{
