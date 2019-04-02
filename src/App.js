@@ -27,9 +27,12 @@ class App extends Component {
         this.defaultOilRowData = {
             oilData: this.defaultOilData,
             oilPercentage: 0,
+            oilGram: 0,
         };
 
         this.state = {
+            soapName: '',
+
             oilLists: [
                 {...this.defaultOilRowData},
                 {...this.defaultOilRowData},
@@ -40,6 +43,8 @@ class App extends Component {
             totalOilGram: 700,
             // 成品皂的INS
             totalINS: 0,
+            // 總油％
+            totalPercentage: 0,
 
             // 總NaOH重
             totalNaOHGram: 0,
@@ -57,27 +62,36 @@ class App extends Component {
             additives: [],
         };
 
+        const d = new Date(),
+            year = d.getFullYear(),
+            month = `0${d.getMonth() + 1}`.substr(-2),
+            date = `0${d.getDate()}`.substr(-2);
+        this.today = [year, month, date].join('-'); 
+
     }
 
     calcTotal = async () => {
 
         let totalNaOHGram = 0,
             totalINS = 0,
-            totalWaterGram = 0;
+            totalWaterGram = 0,
+            totalPercentage = 0;
 
         await this.state.oilLists.forEach((oil) => {
 
             if (oil.oilData.saponificationValue) {
 
-                totalNaOHGram = base.strip(totalNaOHGram + (this.state.totalOilGram * oil.oilPercentage / 100 * oil.oilData.saponificationValue));
+                totalNaOHGram = base.calc(base.strip(totalNaOHGram + (this.state.totalOilGram * oil.oilPercentage / 100 * oil.oilData.saponificationValue)), 2);
 
             }
 
             if (oil.oilData.INS) {
 
-                totalINS = base.strip(totalINS + (oil.oilPercentage / 100 * oil.oilData.INS));
+                totalINS = base.calc(base.strip(totalINS + (oil.oilPercentage / 100 * oil.oilData.INS)), 2);
 
             }
+
+            totalPercentage = base.calc(base.strip(totalPercentage + oil.oilPercentage), 0);
             
         });
 
@@ -86,7 +100,8 @@ class App extends Component {
         this.setState({
             totalNaOHGram,
             totalINS,
-            totalWaterGram
+            totalWaterGram,
+            totalPercentage,
         });
 
     }
@@ -105,7 +120,16 @@ class App extends Component {
 
     handleInputChange = (e) => {
 
-        this.setState({ [e.target.id]: e.target.value });
+        let newOilLists = [].concat(this.state.oilLists);
+        newOilLists.forEach((oil) => {
+            oil.oilGram = base.calc(base.strip(e.target.value * oil.oilPercentage / 100), 0);
+        });
+
+        this.setState({ [e.target.id]: e.target.value }, () => {
+
+            this.updateOilLists(newOilLists);
+
+        });
 
     }
 
@@ -123,11 +147,42 @@ class App extends Component {
 
     handleOilPercentageChange = (e) => {
 
-        const rowIndex = e.target.dataset.rowIndex;
+        const rowIndex = e.target.dataset.rowIndex,
+            totalOilWeight = this.state.totalOilGram;
         let newOilLists = [].concat(this.state.oilLists);
         newOilLists[rowIndex].oilPercentage = +e.target.value;
+        newOilLists[rowIndex].oilGram = base.strip(totalOilWeight * (+e.target.value) / 100);
 
         this.updateOilLists(newOilLists);
+
+    }
+
+    handleOilGramChange = async (e) => {
+
+        e.persist();
+
+        const rowIndex = e.target.dataset.rowIndex;
+        let newOilLists = [].concat(this.state.oilLists),
+            totalOilWeight = 0;
+        newOilLists[rowIndex].oilGram = +e.target.value;
+        await newOilLists.forEach((oil) => {
+            totalOilWeight = totalOilWeight + oil.oilGram;
+        });
+        await newOilLists.forEach((oil) => {
+            oil.oilPercentage = base.calc(base.strip(oil.oilGram / totalOilWeight * 100), 0);
+        });
+
+        if (+e.target.value > 0) {
+
+            this.setState({
+                totalOilGram: totalOilWeight,
+            }, () => {
+
+                this.updateOilLists(newOilLists);
+
+            });
+
+        }
 
     }
 
@@ -173,9 +228,11 @@ class App extends Component {
                     defaultValue={oil.oilData.enName}
                     index={rowIndex}
                     totalOilGram={this.state.totalOilGram}
+                    totalPercentage={this.state.totalPercentage}
                     handleOilSelect={this.handleOilSelect}
                     handleOilPercentageChange={this.handleOilPercentageChange}
                     handleDeleteRow={this.handleDeleteRow}
+                    handleOilGramChange={this.handleOilGramChange}
                 />
 
             ))
@@ -187,6 +244,22 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <h1>
+                    <input
+                        type="text"
+                        onChange={this.handleInputChange}
+                        id="soapName"
+                        value={this.state.soapName}
+                        className="soapName"
+                    />
+                    <input
+                        type="date"
+                        onChange={this.handleInputChange}
+                        id="date"
+                        value={this.state.date || this.today}
+                        className="date"
+                    />
+                </h1>
                 <ul className="topInfo">
                     <li>
                       預計製作總油量：
@@ -227,14 +300,14 @@ class App extends Component {
                         <li></li>
                         <li></li>
                         <li>{this.state.totalNaOHGram}</li>
-                        <li></li>
+                        <li>{this.state.totalPercentage}&nbsp;%</li>
                         <li>{this.state.totalINS}</li>
                         <li></li>
                     </ul>
                 </div>
                 <ul className="bottomInfo">
                     <li>
-                        水重量：&nbsp;<span>{this.state.totalWaterGram}</span>&nbsp;g
+                        水重量：&nbsp;<span>{base.calc(this.state.totalWaterGram, 2)}</span>&nbsp;g
                         &nbsp;（&nbsp;
                         <input
                             type="number"
@@ -243,6 +316,12 @@ class App extends Component {
                             className="waterTimes"
                         />
                         &nbsp;倍&nbsp;）
+                    </li>
+                    <li>
+                        45%鹼水需要量：&nbsp;<span>{base.calc(base.strip(this.state.totalNaOHGram / 0.45), 0)}</span>&nbsp;g
+                    </li>
+                    <li>
+                        尚須水量：&nbsp;<span>{base.calc(base.strip(this.state.totalWaterGram - ((this.state.totalNaOHGram / 0.45) * 0.55)), 0)}</span>&nbsp;g
                     </li>
                 </ul>
             </div>

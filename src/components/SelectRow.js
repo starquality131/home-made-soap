@@ -61,12 +61,17 @@ class SelectRow extends PureComponent {
                 {/*皂化價*/}
                 <li className="tableCol">{this.props.data.oilData.saponificationValue}</li>
                 {/*oil g*/}
-                <li className="tableCol">
-                    {base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100)}
+                <li className="tableCol oil_gram">
+                    <input
+                        type="number"
+                        data-row-index={this.props.index}
+                        onChange={this.props.handleOilGramChange}
+                        value={this.props.data.oilGram}
+                    />&nbsp;g
                 </li>
                 {/*NaOH g*/}
                 <li className="tableCol">
-                    {base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100 * this.props.data.oilData.saponificationValue)}
+                    {base.calc(base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100 * this.props.data.oilData.saponificationValue), 2)}
                 </li>
                 {/*oil %*/}
                 <li className="tableCol oil_percentage">
@@ -74,11 +79,12 @@ class SelectRow extends PureComponent {
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilPercentageChange}
+                        value={this.props.data.oilPercentage}
                     />&nbsp;%
                 </li>
                 {/*Calc. INS*/}
                 <li className="tableCol">
-                    {base.strip(this.props.data.oilData.INS * this.props.data.oilPercentage / 100)}
+                    {base.calc(base.strip(this.props.data.oilData.INS * this.props.data.oilPercentage / 100), 2)}
                 </li>
                 {/*操作*/}
                 <li className="tableCol">

@@ -45,6 +45,13 @@ input{
     text-align: center;
 }
 
+.soapName{
+    width: 200px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .topInfo{
     display: flex;
     align-items: center;
@@ -61,6 +68,10 @@ input{
     padding: 20px;
     input {
         width: 50px;
+    }
+    li{
+        margin-bottom: 10px;
+        margin-right: 20px;
     }
 }
 
@@ -121,7 +132,8 @@ input{
     }
 }
 
-.oil_percentage{
+.oil_percentage,
+.oil_gram {
     input{
         width: 80%;
     }

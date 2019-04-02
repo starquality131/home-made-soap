@@ -156,15 +156,15 @@ const oilList = [
         feature: '保濕力',
     },
     {
-        name: '荷荷芭',
+        name: '荷荷芭油',
         enName: 'Jojoba',
         // 皂化價
-        saponificationValue: 0.069,
+        saponificationValue: 0.066,
         INS: 11,
         // 碘價
         iodineValue: '80-85',
         // 建議％
-        suggestPercentage: '7~8%',
+        suggestPercentage: '5~10%',
         // 特徵
         feature: '保濕力',
     },
@@ -196,7 +196,7 @@ const oilList = [
     },
     {
         name: '白油',
-        enName: '	Shortening_(veg.)',
+        enName: 'Shortening_(veg.)',
         // 皂化價
         saponificationValue: 0.136,
         INS: 115,
@@ -208,7 +208,7 @@ const oilList = [
         feature: '',
     },
     {
-        name: '開心果',
+        name: '開心果油',
         enName: 'Pistachio_Nut',
         // 皂化價
         saponificationValue: 0.1328,
@@ -216,7 +216,7 @@ const oilList = [
         // 碘價
         iodineValue: '93-96',
         // 建議％
-        suggestPercentage: '',
+        suggestPercentage: '20~72%',
         // 特徵
         feature: '',
     },
