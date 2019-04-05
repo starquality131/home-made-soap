@@ -14,6 +14,9 @@ class SelectRow extends PureComponent {
             // 需要的ＮaOHg數
             NaOHGram: '',
         };
+
+        this.NaOHGram = null;
+        this.calcIns = null;
     }
 
     doOilOptions = (data) => (
@@ -35,6 +38,12 @@ class SelectRow extends PureComponent {
     calculation = () => {}
 
     render() {
+
+        this.NaOHGram = base.calc(base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100 * this.props.data.oilData.saponificationValue), 2);
+        this.NaOHGram = base.isNaNToZero(this.NaOHGram) ;
+
+        this.calcIns = base.calc(base.strip(this.props.data.oilData.INS * this.props.data.oilPercentage / 100), 2);
+        this.calcIns = base.isNaNToZero(this.calcIns);
 
         return (
             <ul className="tableRow">
@@ -66,12 +75,12 @@ class SelectRow extends PureComponent {
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilGramChange}
-                        value={this.props.data.oilGram}
+                        defaultValue={this.props.data.oilGram}
                     />&nbsp;g
                 </li>
                 {/*NaOH g*/}
                 <li className="tableCol">
-                    {base.calc(base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100 * this.props.data.oilData.saponificationValue), 2)}
+                    {this.NaOHGram}
                 </li>
                 {/*oil %*/}
                 <li className="tableCol oil_percentage">
@@ -79,12 +88,12 @@ class SelectRow extends PureComponent {
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilPercentageChange}
-                        value={this.props.data.oilPercentage}
+                        defaultValue={this.props.data.oilPercentage}
                     />&nbsp;%
                 </li>
                 {/*Calc. INS*/}
                 <li className="tableCol">
-                    {base.calc(base.strip(this.props.data.oilData.INS * this.props.data.oilPercentage / 100), 2)}
+                    {this.calcIns}
                 </li>
                 {/*操作*/}
                 <li className="tableCol">

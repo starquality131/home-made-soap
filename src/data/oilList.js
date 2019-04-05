@@ -39,17 +39,17 @@ const oilList = [
         feature: '不易溶化變形的硬肥皂',
     },
     {
-        name: '可可脂',
-        enName: 'Cocoa_Butter',
+        name: '橄欖油',
+        enName: 'Olive_Oil',
         // 皂化價
-        saponificationValue: 0.137,
-        INS: 157,
+        saponificationValue: 0.134,
+        INS: 109,
         // 碘價
-        iodineValue: '33-44',
+        iodineValue: '79-95',
         // 建議％
-        suggestPercentage: '5~10%',
+        suggestPercentage: '可100%使用',
         // 特徵
-        feature: '不易溶化變形的硬肥皂,並能在皮膚上形成保護膜',
+        feature: '保濕力',
     },
     {
         name: '乳油木果脂',
@@ -59,6 +59,19 @@ const oilList = [
         INS: 116,
         // 碘價
         iodineValue: '55-71',
+        // 建議％
+        suggestPercentage: '5~10%',
+        // 特徵
+        feature: '不易溶化變形的硬肥皂,並能在皮膚上形成保護膜',
+    },
+    {
+        name: '可可脂',
+        enName: 'Cocoa_Butter',
+        // 皂化價
+        saponificationValue: 0.137,
+        INS: 157,
+        // 碘價
+        iodineValue: '33-44',
         // 建議％
         suggestPercentage: '5~10%',
         // 特徵
@@ -143,19 +156,6 @@ const oilList = [
         feature: '保濕力',
     },
     {
-        name: '橄欖油',
-        enName: 'Olive_Oil',
-        // 皂化價
-        saponificationValue: 0.134,
-        INS: 109,
-        // 碘價
-        iodineValue: '79-95',
-        // 建議％
-        suggestPercentage: '可100%使用',
-        // 特徵
-        feature: '保濕力',
-    },
-    {
         name: '荷荷芭油',
         enName: 'Jojoba',
         // 皂化價
@@ -182,6 +182,32 @@ const oilList = [
         feature: '有清爽感覺肥皂的油',
     },
     {
+        name: '開心果油',
+        enName: 'Pistachio_Nut',
+        // 皂化價
+        saponificationValue: 0.1328,
+        INS: 92,
+        // 碘價
+        iodineValue: '93-96',
+        // 建議％
+        suggestPercentage: '20~72%',
+        // 特徵
+        feature: '',
+    },
+    {
+        name: '葡萄籽油',
+        enName: 'Grapeseed',
+        // 皂化價
+        saponificationValue: 0.1265,
+        INS: 66,
+        // 碘價
+        iodineValue: '125-137',
+        // 建議％
+        suggestPercentage: '10%',
+        // 特徵
+        feature: '有清爽感覺肥皂的油',
+    },
+    {
         name: '月見草油',
         enName: 'Evening_Primrose',
         // 皂化價
@@ -195,6 +221,19 @@ const oilList = [
         feature: '對問題皮膚特別有效用的油',
     },
     {
+        name: '蜜蠟',
+        enName: 'Beeswax',
+        // 皂化價
+        saponificationValue: 0.069,
+        INS: 84,
+        // 碘價
+        iodineValue: '',
+        // 建議％
+        suggestPercentage: '<6%',
+        // 特徵
+        feature: '熔點61-66度',
+    },
+    {
         name: '白油',
         enName: 'Shortening_(veg.)',
         // 皂化價
@@ -204,19 +243,6 @@ const oilList = [
         iodineValue: '90-95',
         // 建議％
         suggestPercentage: '10~20%',
-        // 特徵
-        feature: '',
-    },
-    {
-        name: '開心果油',
-        enName: 'Pistachio_Nut',
-        // 皂化價
-        saponificationValue: 0.1328,
-        INS: 92,
-        // 碘價
-        iodineValue: '93-96',
-        // 建議％
-        suggestPercentage: '20~72%',
         // 特徵
         feature: '',
     },

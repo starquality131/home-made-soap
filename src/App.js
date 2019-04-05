@@ -26,8 +26,8 @@ class App extends Component {
 
         this.defaultOilRowData = {
             oilData: this.defaultOilData,
-            oilPercentage: 0,
-            oilGram: 0,
+            oilPercentage: null,
+            oilGram: null,
         };
 
         this.state = {
@@ -97,6 +97,11 @@ class App extends Component {
 
         totalWaterGram = base.strip(totalNaOHGram * this.state.waterTimes);
 
+        totalNaOHGram = base.isNaNToZero(totalNaOHGram);
+        totalINS = base.isNaNToZero(totalINS);
+        totalWaterGram = base.isNaNToZero(totalWaterGram);
+        totalPercentage = base.isNaNToZero(totalPercentage);
+
         this.setState({
             totalNaOHGram,
             totalINS,
@@ -150,8 +155,8 @@ class App extends Component {
         const rowIndex = e.target.dataset.rowIndex,
             totalOilWeight = this.state.totalOilGram;
         let newOilLists = [].concat(this.state.oilLists);
-        newOilLists[rowIndex].oilPercentage = +e.target.value;
-        newOilLists[rowIndex].oilGram = base.strip(totalOilWeight * (+e.target.value) / 100);
+        newOilLists[rowIndex].oilPercentage = (e.target.value === '') ? null : +e.target.value;
+        newOilLists[rowIndex].oilGram = (e.target.value === '') ? null : base.strip(totalOilWeight * (+e.target.value) / 100);
 
         this.updateOilLists(newOilLists);
 
@@ -164,25 +169,28 @@ class App extends Component {
         const rowIndex = e.target.dataset.rowIndex;
         let newOilLists = [].concat(this.state.oilLists),
             totalOilWeight = 0;
-        newOilLists[rowIndex].oilGram = +e.target.value;
+
+            console.log('bb', e.target.value);
+            
+        newOilLists[rowIndex].oilGram = (e.target.value === '') ? null : +e.target.value;
         await newOilLists.forEach((oil) => {
-            totalOilWeight = totalOilWeight + oil.oilGram;
+            totalOilWeight = base.calc(base.strip(totalOilWeight + oil.oilGram), 2);
         });
         await newOilLists.forEach((oil) => {
             oil.oilPercentage = base.calc(base.strip(oil.oilGram / totalOilWeight * 100), 0);
         });
 
-        if (+e.target.value > 0) {
+        // if (+e.target.value > 0) {
 
             this.setState({
-                totalOilGram: totalOilWeight,
+                totalOilGram: (totalOilWeight <= 0) ? 700 : totalOilWeight,
             }, () => {
 
                 this.updateOilLists(newOilLists);
 
             });
 
-        }
+        // }
 
     }
 
