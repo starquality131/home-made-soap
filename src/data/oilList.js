@@ -91,6 +91,19 @@ const oilList = [
         feature: '保濕力',
     },
     {
+        name: '杏桃核仁油',
+        enName: 'Apricot_Kernel',
+        // 皂化價
+        saponificationValue: 0.135,
+        INS: 91,
+        // 碘價
+        iodineValue: '92-108',
+        // 建議％
+        suggestPercentage: '15~30%',
+        // 特徵
+        feature: '保濕力',
+    },
+    {
         name: '酪梨油',
         enName: 'Avocado',
         // 皂化價
@@ -206,6 +219,19 @@ const oilList = [
         suggestPercentage: '10%',
         // 特徵
         feature: '有清爽感覺肥皂的油',
+    },
+    {
+        name: '月桂油',
+        enName: 'Laurus_nobilis_fruit_Oil',
+        // 皂化價
+        saponificationValue: 0.141,
+        INS: 124,
+        // 碘價
+        iodineValue: '',
+        // 建議％
+        suggestPercentage: '5-25%',
+        // 特徵
+        feature: '',
     },
     {
         name: '月見草油',
