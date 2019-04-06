@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/home-made-soap/static/js/runtime~main.24e4ccd0.js"
   },
   {
-    "revision": "bdfe7ca4343e171bd779",
-    "url": "/home-made-soap/static/js/main.bdfe7ca4.chunk.js"
+    "revision": "5a6664dde7e5249251bc",
+    "url": "/home-made-soap/static/js/main.5a6664dd.chunk.js"
   },
   {
     "revision": "1722a05669464a827d6a",
     "url": "/home-made-soap/static/js/1.1722a056.chunk.js"
   },
   {
-    "revision": "bdfe7ca4343e171bd779",
+    "revision": "5a6664dde7e5249251bc",
     "url": "/home-made-soap/static/css/main.6505bd40.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/home-made-soap/static/css/1.6545caa2.chunk.css"
   },
   {
-    "revision": "d07c43745a99d0e580afa4ee8c34e762",
+    "revision": "c82fbd7d4892dc38337bec3ad1abcb48",
     "url": "/home-made-soap/index.html"
   }
 ];
