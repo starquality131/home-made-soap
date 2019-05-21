@@ -39,10 +39,10 @@ class SelectRow extends PureComponent {
 
     render() {
 
-        this.NaOHGram = base.calc(base.strip(this.props.totalOilGram * this.props.data.oilPercentage / 100 * this.props.data.oilData.saponificationValue), 2);
+        this.NaOHGram = base.calc(base.strip(this.props.oilGram * this.props.saponificationValue), 2);
         this.NaOHGram = base.isNaNToZero(this.NaOHGram) ;
 
-        this.calcIns = base.calc(base.strip(this.props.data.oilData.INS * this.props.data.oilPercentage / 100), 2);
+        this.calcIns = base.calc(base.strip(this.props.INS * this.props.oilPercentage / 100), 2);
         this.calcIns = base.isNaNToZero(this.calcIns);
 
         return (
@@ -61,21 +61,21 @@ class SelectRow extends PureComponent {
                     </select>
                     {(this.props.defaultValue !== '') ? (
                         <Fragment>
-                            &nbsp;<span>({this.props.data.oilData.suggestPercentage})</span>
+                            &nbsp;<span>({this.props.suggestPercentage})</span>
                         </Fragment>
                     ) : null}
                 </li>
                 {/*INS*/}
-                <li className="tableCol">{this.props.data.oilData.INS}</li>
+                <li className="tableCol">{this.props.INS}</li>
                 {/*皂化價*/}
-                <li className="tableCol">{this.props.data.oilData.saponificationValue}</li>
+                <li className="tableCol">{this.props.saponificationValue}</li>
                 {/*oil g*/}
                 <li className="tableCol oil_gram">
                     <input
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilGramChange}
-                        defaultValue={this.props.data.oilGram}
+                        value={this.props.oilGram}
                     />&nbsp;g
                 </li>
                 {/*NaOH g*/}
@@ -88,7 +88,7 @@ class SelectRow extends PureComponent {
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilPercentageChange}
-                        defaultValue={this.props.data.oilPercentage}
+                        value={this.props.oilPercentage}
                     />&nbsp;%
                 </li>
                 {/*Calc. INS*/}

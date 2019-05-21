@@ -123,6 +123,12 @@ class App extends Component {
 
     }
 
+    handleSelfInputChange = (e) => {
+
+        this.setState({ [e.target.id]: e.target.value });
+
+    }
+
     handleInputChange = (e) => {
 
         let newOilLists = [].concat(this.state.oilLists);
@@ -174,7 +180,7 @@ class App extends Component {
             
         newOilLists[rowIndex].oilGram = (e.target.value === '') ? null : +e.target.value;
         await newOilLists.forEach((oil) => {
-            totalOilWeight = base.calc(base.strip(totalOilWeight + oil.oilGram), 2);
+            totalOilWeight = base.calc(base.strip(totalOilWeight + oil.oilGram), 0);
         });
         await newOilLists.forEach((oil) => {
             oil.oilPercentage = base.calc(base.strip(oil.oilGram / totalOilWeight * 100), 0);
@@ -233,6 +239,10 @@ class App extends Component {
                     oils={oilData}
                     oilPercentage={oil.oilPercentage}
                     data={oil}
+                    oilGram={oil.oilGram}
+                    saponificationValue={oil.oilData.saponificationValue}
+                    INS={oil.oilData.INS}
+                    suggestPercentage={oil.oilData.suggestPercentage}
                     defaultValue={oil.oilData.enName}
                     index={rowIndex}
                     totalOilGram={this.state.totalOilGram}
@@ -255,14 +265,14 @@ class App extends Component {
                 <h1>
                     <input
                         type="text"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleSelfInputChange}
                         id="soapName"
                         value={this.state.soapName}
                         className="soapName"
                     />
                     <input
                         type="date"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleSelfInputChange}
                         id="date"
                         value={this.state.date || this.today}
                         className="date"
@@ -272,7 +282,7 @@ class App extends Component {
                     <li>
                       預計製作總油量：
                       <input
-                        type="text"
+                        type="number"
                         onChange={this.handleInputChange}
                         id="totalOilGram"
                         value={this.state.totalOilGram}
