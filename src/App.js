@@ -26,8 +26,8 @@ class App extends Component {
 
         this.defaultOilRowData = {
             oilData: this.defaultOilData,
-            oilPercentage: null,
-            oilGram: null,
+            oilPercentage: '',
+            oilGram: '',
         };
 
         this.state = {
@@ -81,17 +81,17 @@ class App extends Component {
 
             if (oil.oilData.saponificationValue) {
 
-                totalNaOHGram = base.calc(base.strip(totalNaOHGram + (this.state.totalOilGram * oil.oilPercentage / 100 * oil.oilData.saponificationValue)), 2);
+                totalNaOHGram = base.calc(base.strip(totalNaOHGram + (this.state.totalOilGram * (oil.oilPercentage || 0) / 100 * oil.oilData.saponificationValue)), 2);
 
             }
 
             if (oil.oilData.INS) {
 
-                totalINS = base.calc(base.strip(totalINS + (oil.oilPercentage / 100 * oil.oilData.INS)), 2);
+                totalINS = base.calc(base.strip(totalINS + ((oil.oilPercentage || 0) / 100 * oil.oilData.INS)), 2);
 
             }
 
-            totalPercentage = base.calc(base.strip(totalPercentage + oil.oilPercentage), 0);
+            totalPercentage = base.calc(base.strip(totalPercentage + (oil.oilPercentage || 0)), 0);
             
         });
 
@@ -133,7 +133,7 @@ class App extends Component {
 
         let newOilLists = [].concat(this.state.oilLists);
         newOilLists.forEach((oil) => {
-            oil.oilGram = base.calc(base.strip(e.target.value * oil.oilPercentage / 100), 0);
+            oil.oilGram = base.calc(base.strip(e.target.value * (oil.oilPercentage || 0) / 100), 0);
         });
 
         this.setState({ [e.target.id]: e.target.value }, () => {
@@ -161,8 +161,8 @@ class App extends Component {
         const rowIndex = e.target.dataset.rowIndex,
             totalOilWeight = this.state.totalOilGram;
         let newOilLists = [].concat(this.state.oilLists);
-        newOilLists[rowIndex].oilPercentage = (e.target.value === '') ? null : +e.target.value;
-        newOilLists[rowIndex].oilGram = (e.target.value === '') ? null : base.strip(totalOilWeight * (+e.target.value) / 100);
+        newOilLists[rowIndex].oilPercentage = (e.target.value === '') ? '' : +e.target.value;
+        newOilLists[rowIndex].oilGram = (e.target.value === '') ? '' : base.strip(totalOilWeight * (+e.target.value) / 100);
 
         this.updateOilLists(newOilLists);
 
@@ -176,14 +176,12 @@ class App extends Component {
         let newOilLists = [].concat(this.state.oilLists),
             totalOilWeight = 0;
 
-            console.log('bb', e.target.value);
-            
-        newOilLists[rowIndex].oilGram = (e.target.value === '') ? null : +e.target.value;
+        newOilLists[rowIndex].oilGram = (e.target.value === '') ? '' : +e.target.value;
         await newOilLists.forEach((oil) => {
-            totalOilWeight = base.calc(base.strip(totalOilWeight + oil.oilGram), 0);
+            totalOilWeight = base.calc(base.strip(totalOilWeight + (oil.oilGram || 0)), 0);
         });
         await newOilLists.forEach((oil) => {
-            oil.oilPercentage = base.calc(base.strip(oil.oilGram / totalOilWeight * 100), 0);
+            oil.oilPercentage = base.calc(base.strip((oil.oilGram || 0) / totalOilWeight * 100), 0);
         });
 
         // if (+e.target.value > 0) {

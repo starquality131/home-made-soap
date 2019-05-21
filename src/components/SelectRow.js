@@ -39,10 +39,10 @@ class SelectRow extends PureComponent {
 
     render() {
 
-        this.NaOHGram = base.calc(base.strip(this.props.oilGram * this.props.saponificationValue), 2);
+        this.NaOHGram = base.calc(base.strip((this.props.oilGram || 0) * this.props.saponificationValue), 2);
         this.NaOHGram = base.isNaNToZero(this.NaOHGram) ;
 
-        this.calcIns = base.calc(base.strip(this.props.INS * this.props.oilPercentage / 100), 2);
+        this.calcIns = base.calc(base.strip(this.props.INS * (this.props.oilPercentage || 0) / 100), 2);
         this.calcIns = base.isNaNToZero(this.calcIns);
 
         return (
@@ -75,7 +75,7 @@ class SelectRow extends PureComponent {
                         type="number"
                         data-row-index={this.props.index}
                         onChange={this.props.handleOilGramChange}
-                        value={this.props.oilGram}
+                        value={(this.props.oilGram > 0) ? this.props.oilGram : '' }
                     />&nbsp;g
                 </li>
                 {/*NaOH g*/}
