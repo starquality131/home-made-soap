@@ -1,0 +1,15 @@
+{
+  "soaps": [{
+    "oilData": {
+      "name": "",
+      "enName": "",
+      "saponificationValue": null,
+      "INS": null,
+      "iodineValue": null,
+      "suggestPercentage": "",
+      "feature": ""
+    },
+    "oilPercentage": "",
+    "oilGram": ""
+  }]
+}
