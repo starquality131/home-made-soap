@@ -13,6 +13,19 @@ const oilList = [
         feature: '可促進起泡',
     },
     {
+        name: '棕櫚核仁油',
+        enName: 'Palm Kernel',
+        // 皂化價
+        saponificationValue: 0.156,
+        INS: 183,
+        // 碘價
+        iodineValue: '37-42',
+        // 建議％
+        suggestPercentage: '15~35%',
+        // 特徵
+        feature: '可促進起泡的油',
+    },
+    {
         name: '棕櫚油',
         enName: 'Palm',
         // 皂化價
