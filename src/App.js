@@ -4,6 +4,7 @@ import './App.css';
 import oilList from './data/oilList';
 import SelectRow from './components/SelectRow';
 import base from './base/base';
+import ReactGA from 'react-ga';
 
 class App extends Component {
     constructor(props) {
@@ -68,6 +69,11 @@ class App extends Component {
             date = `0${d.getDate()}`.substr(-2);
         this.today = [year, month, date].join('-'); 
 
+    }
+
+    componentDidMount () {
+        ReactGA.initialize('G-HRH0JF903Y');
+        ReactGA.pageview(window.location.pathname);
     }
 
     calcTotal = async () => {
