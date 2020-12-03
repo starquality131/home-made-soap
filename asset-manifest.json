@@ -1,7 +1,7 @@
 {
   "main.css": "/home-made-soap/static/css/main.5a3ba679.chunk.css",
-  "main.js": "/home-made-soap/static/js/main.c1f916e8.chunk.js",
-  "main.js.map": "/home-made-soap/static/js/main.c1f916e8.chunk.js.map",
+  "main.js": "/home-made-soap/static/js/main.c4fa3bfe.chunk.js",
+  "main.js.map": "/home-made-soap/static/js/main.c4fa3bfe.chunk.js.map",
   "static/css/1.739df269.chunk.css": "/home-made-soap/static/css/1.739df269.chunk.css",
   "static/js/1.b9eb49ce.chunk.js": "/home-made-soap/static/js/1.b9eb49ce.chunk.js",
   "static/js/1.b9eb49ce.chunk.js.map": "/home-made-soap/static/js/1.b9eb49ce.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/main.5a3ba679.chunk.css.map": "/home-made-soap/static/css/main.5a3ba679.chunk.css.map",
   "static/css/1.739df269.chunk.css.map": "/home-made-soap/static/css/1.739df269.chunk.css.map",
   "index.html": "/home-made-soap/index.html",
-  "precache-manifest.d0c6496824ecd191ef76bd61c393a6f7.js": "/home-made-soap/precache-manifest.d0c6496824ecd191ef76bd61c393a6f7.js",
+  "precache-manifest.bacf2cadebe2d27dd69f3ae4d993ae8c.js": "/home-made-soap/precache-manifest.bacf2cadebe2d27dd69f3ae4d993ae8c.js",
   "service-worker.js": "/home-made-soap/service-worker.js"
 }
