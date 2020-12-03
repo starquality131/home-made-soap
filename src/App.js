@@ -73,6 +73,14 @@ class App extends Component {
 
     componentDidMount () {
         ReactGA.initialize('G-HRH0JF903Y');
+        this.trackGA();
+    }
+
+    componentDidUpdate () {
+        this.trackGA();
+    }
+
+    trackGA = () => {
         ReactGA.pageview(window.location.pathname);
     }
 
